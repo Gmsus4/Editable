@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Editable</title>
+	<link rel="stylesheet" href="styles.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300;400&display=swap" rel="stylesheet">
+
+</head>
+<body>
+	<form action="">
+		<div class="form">
+			<div class="nav">
+				<h1>Editable</h1>
+				<div class="color fondo"> 
+					<input type="color" id="color" value="#3DB2FF">
+				</div>
+				<div class="color"> 
+					<input type="color" id="color2" value="#999999">
+				</div>
+				<div>
+					<i class="fas fa-palette" id="palettes"></i>
+				</div>
+			</div>
+
+			<div class="first">
+			  <p>
+			    Género:
+			    <select name="genero" id="genero">
+			      <option value="m" class="txtop">Masculino</option>
+			      <option value="f" class="txtop">Femenino</option>
+			    </select>
+				<i class="fas fa-sort-down"></i>
+			  </p>
+			</div>
+
+			<div class="inputs">
+				<label for="name">Nombre:</label>
+				<input type="text" id="name" class="name" placeholder="¿Cuál es su nombre?">
+			</div>
+
+			<div class="inputs">
+				<label for="peso">Peso (Kg):</label>
+				<input type="number" id="peso" class="peso" placeholder="¿Cuánto pesa? (Kg)" max="150" min="30" value="67">
+			</div>
+
+			<div class="inputs">
+				<label for="edad">Edad:</label>
+				<input type="number" id="edad" class="edad" placeholder="¿Cuál es su edad?" min="10" max="100" value="25">
+			</div>
+
+			<div class="inputs"> 
+				<label for="altura">Altura (Cm):</label>
+				<input type="number" id="altura" class="altura" placeholder="¿Cuál es su altura? (Metros)" max="210" min="120" value="175">
+			</div>
+
+			<div class="actividad">
+				  <p>
+				    Actividad:
+				    <select name="actividad" id="actividad">
+				      <option value="1.2">Personas Sedentarias</option>
+				      <option value="1.375">Ejercicio de 1 a 3 veces por semana</option>
+				      <option value="1.55">Ejercicio de 3 a 5 veces por semana</option>
+				      <option value="1.725">Ejercicio de 6 a 7 veces por semana</option>
+				      <option value="1.9">Atletas Profesionales</option>
+				  	</select>
+					<i class="fas fa-sort-down"></i>
+				</p>
+			</div>
+
+			<div class="btn-home">
+				<button id="enviar" class="btn">Enviar</button>			
+			</div>
+
+		</div>
+
+		<div class="resultado dis" id="res_">
+
+		</div>
+	</form>
+	<script src="codigo.js"></script>
+	<script src="https://kit.fontawesome.com/5ad9b15f31.js" crossorigin="anonymous"></script>
+</body>
+</html>

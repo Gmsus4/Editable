@@ -1,0 +1,271 @@
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+html{
+	font-size: 62.5%;
+	
+}
+
+:root{
+	--primary: #3DB2FF;
+	--secundary: #999;
+	--prgba: rgba(61,178,255,.85);
+}
+
+body{
+	font-family: 'Dosis', sans-serif;
+}
+
+form{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100vh;
+	background-color: var(--primary);
+}
+
+.form{
+	width: 90%;
+	max-width: 40em;
+	padding: 1em 2em; 
+	border-radius: 2em;
+	background-color: rgba(255,255,255,.84);
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+}
+
+.form h1{
+	font-size: 2.4em;
+	color: var(--primary);
+	margin: 1rem;
+}
+
+.form div{
+	margin: 1em;
+}
+
+.form div:first-child{
+	margin-bottom: 2em;
+}
+
+.form div p{
+	color: var(--primary);
+}
+
+.nav{
+	width: 90%;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.first p{
+	position: relative;
+}
+
+.first select::-ms-expand {
+    display: none;
+}
+
+.first{
+	position: relative;
+}
+
+.first select,
+.actividad select{
+	width: 100%;
+	position: relative;
+	cursor: pointer;
+  	padding: 7px 10px;
+  	outline: 0; 
+  	border: 0;
+	background-color: rgba(255,255,255,.3);
+	font-size: 1em;
+	color: var(--secundary);
+    border-radius: 12px;
+    position: relative;
+    transition: all 0.25s ease;
+}
+
+.first select:hover{
+	background: var(--prgba);
+	color: white;
+}
+
+.actividad select:hover{
+	background: var(--prgba);
+	color: white;
+}
+
+.actividad p:hover .fa-sort-down{
+	color: white;
+}
+.first p:hover .fa-sort-down{
+	color: white;
+}
+
+input,
+.first select,
+.actividad select,
+label {
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+.first p select,
+.actividad p select{
+	font-size: 0.7em;
+}
+
+input.name{
+	font-family: 'Dosis', sans-serif;
+	color: #999;
+	font-size: 1.4em;
+	font-weight: 400;
+	padding-left: 0.6em;
+	color: var(--secundary);
+}
+
+input{
+	width: 100%;
+	height: 2em;
+	border-radius: 1.2em;
+	border: none;
+	padding-left: 1.2em;
+	color: var(--secundary);
+	background-color: rgba(255,255,255,.3);
+}
+
+.inputs{
+	display: inline-block;
+	margin-bottom: 10px;
+}
+
+p{
+	font-size: 2em;
+	font-weight: 400;
+	margin-left: 5px;
+}
+
+label{
+	color: var(--primary);
+	font-size: 2em;
+	font-weight: 400;
+	margin-left: 5px;
+}
+
+button{
+	width: 100%;
+	height: 3em;
+	background-color: var(--primary);
+	border: none;
+	border-radius: 2em;
+	color: white;
+	cursor: pointer;
+}
+
+.res{
+	width: 20%;
+	padding: 1em 2em; 
+	border-radius: 2em;
+	background-color: rgba(255,255,255,.84);
+	box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
+	margin-left: 2em;
+	min-width: 40em;
+}
+
+.res p{
+	color: var(--primary);
+}
+
+.res span{
+	color: var(--secundary);
+}
+
+.dis{
+	display: none;
+}
+
+.btn{
+	margin-top: 1em;
+}
+
+.btn-home{
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.first {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.color{
+	width: 3em;
+  	height: 3em;
+  	border-radius: 50px;
+  	overflow: hidden;
+}
+
+[type="color"] {
+  border: 0;
+  padding: 0;
+  width: 200%;
+  height: 200%;
+  cursor: pointer;
+  transform: translate(-25%, -25%);
+}
+
+
+.fa-palette{
+	color: var(--primary);
+	font-size: 3em;
+	cursor: pointer;
+}
+
+.first .fa-sort-down{
+	position: absolute;
+	top: 1.45em;
+	right: 0.5em;
+}
+
+.actividad{
+	position: relative;
+}
+
+.actividad .fa-sort-down{
+	position: absolute;
+	top: 1.45em;
+	right: 0.5em;
+}
+
+
+
+@media (max-width: 900px){
+	.resultado{
+		width: 100%;
+		margin: 30px 0 0 0;
+		padding: 5px 50px;
+		border-radius: none;
+	}
+
+	.res{
+		border-radius: 0px;
+	}
+
+	form{
+		flex-direction: column;
+		height: auto;
+		min-width: auto;
+		max-width: auto;
+		overflow: hidden;
+		padding: 2em 0;
+	}
+}
