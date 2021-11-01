@@ -21,26 +21,27 @@ boton.addEventListener("click",(e)=>{
 
 	mbf = 10 * peso.value + 6.25 * altura.value - 5 * edad.value - 161;
 	mbm = 10 * peso.value + 6.25 * altura.value - 5 * edad.value  + 5;
-	mbf1 = Math.round((mbm * actividad.value)*100) / 100;
-	mbf2 = Math.round((mbf * actividad.value)*100) / 100;
-	imcf = Math.round((peso.value) / (Math.pow(altura.value / 100, 2)) * 100) / (100);
-	imcm = Math.round((peso.value) / (Math.pow(altura.value / 100, 2)) * 100) / (100);
+	mbf1 = mbm * actividad.value;
+	mbf2 = mbf * actividad.value;
+	imcf = peso.value / (Math.pow(altura.value / 100, 2));
+	imcm = peso.value / (Math.pow(altura.value / 100, 2));
 	agua = 35 * peso.value;
-	pesoIdeal = Math.round((altura.value / 100)*(altura.value / 100) * (21.745));
+	pesoIdeal = (altura.value / 100) * (altura.value / 100) * (21.745);
 	resta = (peso.value - pesoIdeal) * -1;
-	grasaCorporalM = Math.round(((1.2 * imcm) + (0.23 * edad.value) -10.8 -5.4) * (100)) / (100);
-	grasaCorporalF = Math.round(((1.2 * imcf) + (0.23 * edad.value) -5.4) * (100)) / (100);
-	mgcm = Math.round((peso.value * grasaCorporalM) / (100)*(100)) / (100);
-	mgcf = Math.round((peso.value * grasaCorporalF) / (100)*(100)) / (100);
-	mcmm = Math.round((peso.value - mgcm)* 100) / 100;
-	mcmf = Math.round((peso.value - mgcf)* 100) / 100;
+	grasaCorporalM = (1.2 * imcm) + (0.23 * edad.value) -10.8 -5.4;
+	grasaCorporalF = (1.2 * imcf) + (0.23 * edad.value) -5.4;
+	mgcm = (peso.value * grasaCorporalM) / (100);
+	mgcf = (peso.value * grasaCorporalF) / (100);
+	mcmm = (peso.value - mgcm);
+	mcmf = (peso.value - mgcf);
+	console.log(pesoIdeal);
 
 	if (resta > 1) {
-		txt = `debe subir de peso <span>${resta}</span> kilos para estar en su peso ideal.`;
+		txt = `debe subir de peso <span>${resta.toFixed(2)}</span> kilos para estar en su peso ideal.`;
 	} else if(resta == 0){
 		txt = `felicidades por tener un cuerpo saludable uwu.`;
 	} else{
-		txt = `debe bajar de peso <span>${resta}</span> kilos para estar en su peso ideal.`;
+		txt = `debe bajar de peso <span>${resta.toFixed(2)}</span> kilos para estar en su peso ideal.`;
 	}
 
 	if (imcm < 18.5) {
@@ -63,17 +64,19 @@ boton.addEventListener("click",(e)=>{
 		<div class="container">
 			<br>
 			<p>Bienvenido <b>${nombre.value},</b> ${txt2}, ${txt}</p><br>
+			<p><b>Peso mínimo de:</b><span> ${(parseFloat(pesoIdeal).toFixed(2) - 10).toFixed(2)} Kilos</span> </p> <br>
 			<p><b>Su peso ideal es de:</b><span> ${pesoIdeal.toFixed(2)} Kilos</span> </p> <br>
-			<p><b>Metabolismo basal:</b><span> ${mbm}</span></p>
+			<p><b>Peso máximo de:</b><span> ${(parseFloat(pesoIdeal) + 10).toFixed(2)} Kilos</span> </p> <br>
+			<p><b>Metabolismo basal:</b><span> ${mbm.toFixed(2)}</span></p>
 			<p>Es la cantidad de energía necesaria para mantener los procesos vitales estando en reposo.</p><br>
-			<p><b>Requerimiento Calórico:</b><span> ${mbf1}</span></p>
+			<p><b>Requerimiento Calórico:</b><span> ${mbf1.toFixed(2)}</span></p>
 			<p>Es la ingesta diaria de calorías recomendada de una persona para mantener su peso actual.</p><br>
-			<p><b>IMC:</b><span> ${imcm}</span> </p>
+			<p><b>IMC:</b><span> ${imcm.toFixed(2)}</span> </p>
 			<p>El índice de masa corporal (IMC) sirve para medir la relación entre el peso y la talla, lo que  permite identificar el sobrepeso y la obesidad en adultos.</p><br>
-			<p><b>Grasa Corporal:</b><span> ${grasaCorporalM}%</span> </p>
-			<p><b>La masa de grasa corporal es de:</b><span> ${mgcm} kg</span> </p>
-			<p><b>La masa corporal magra es:</b><span> ${mcmm} kg</span> </p><br>
-			<p><b>Usted debería tomar:</b><span> ${agua} ml de agua</span> al día.</p> <br>
+			<p><b>Grasa Corporal:</b><span> ${grasaCorporalM.toFixed(2)}%</span> </p>
+			<p><b>La masa de grasa corporal es de:</b><span> ${mgcm.toFixed(2)} kg</span> </p>
+			<p><b>La masa corporal magra es:</b><span> ${mcmm.toFixed(2)} kg</span> </p><br>
+			<p><b>Usted debería tomar:</b><span> ${agua.toFixed(2)} ml de agua</span> al día.</p> <br>
 		</div>
 		 `;
 
@@ -83,16 +86,16 @@ boton.addEventListener("click",(e)=>{
 			<br>
 			<p>Bienvenida <b>${nombre.value},</b> ${txt2}, ${txt}</p><br>
 			<p><b>Su peso ideal es de:</b><span> ${pesoIdeal.toFixed(2)} Kilos</span> </p> <br>
-			<p><b>Metabolismo basal:</b><span> ${mbf}</span></p>
+			<p><b>Metabolismo basal:</b><span> ${mbf.toFixed(2)}</span></p>
 			<p>Es la cantidad de energía necesaria para mantener los procesos vitales estando en reposo.</p><br>
-			<p><b>Requerimiento Calórico:</b><span> ${mbf2}</span></p>
+			<p><b>Requerimiento Calórico:</b><span> ${mbf2.toFixed(2)}</span></p>
 			<p>Es la ingesta diaria de calorías recomendada de una persona para mantener su peso actual.</p><br>
-			<p><b>IMC:</b><span> ${imcf}</span> </p>
+			<p><b>IMC:</b><span> ${imcf.toFixed(2)}</span> </p>
 			<p>El índice de masa corporal (IMC) sirve para medir la relación entre el peso y la talla, lo que  permite identificar el sobrepeso y la obesidad en adultos.</p><br>
-			<p><b>Grasa Corporal:</b><span> ${grasaCorporalF}%</span> </p>
-			<p><b>La masa de grasa corporal es de:</b><span> ${mgcf} kg</span> </p>
-			<p><b>La masa corporal magra es de:</b><span> ${mcmf} kg</span></p> <br>
-			<p><b>Usted debería tomar:</b><span> ${agua} ml de agua</span> al día.</p> <br>
+			<p><b>Grasa Corporal:</b><span> ${grasaCorporalF.toFixed(2)}%</span> </p>
+			<p><b>La masa de grasa corporal es de:</b><span> ${mgcf.toFixed(2)} kg</span> </p>
+			<p><b>La masa corporal magra es de:</b><span> ${mcmf.toFixed(2)} kg</span></p> <br>
+			<p><b>Usted debería tomar:</b><span> ${agua.toFixed(2)} ml de agua</span> al día.</p> <br>
 		</div>
 
 		 `;
