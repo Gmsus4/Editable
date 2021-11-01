@@ -85,7 +85,9 @@ boton.addEventListener("click",(e)=>{
 		<div class="container">
 			<br>
 			<p>Bienvenida <b>${nombre.value},</b> ${txt2}, ${txt}</p><br>
+			<p><b>Peso mínimo de:</b><span> ${(parseFloat(pesoIdeal).toFixed(2) - 10).toFixed(2)} Kilos</span> </p> <br>
 			<p><b>Su peso ideal es de:</b><span> ${pesoIdeal.toFixed(2)} Kilos</span> </p> <br>
+			<p><b>Peso máximo de:</b><span> ${(parseFloat(pesoIdeal) + 10).toFixed(2)} Kilos</span> </p> <br>
 			<p><b>Metabolismo basal:</b><span> ${mbf.toFixed(2)}</span></p>
 			<p>Es la cantidad de energía necesaria para mantener los procesos vitales estando en reposo.</p><br>
 			<p><b>Requerimiento Calórico:</b><span> ${mbf2.toFixed(2)}</span></p>
