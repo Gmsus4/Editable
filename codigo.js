@@ -47,7 +47,7 @@ boton.addEventListener("click",(e)=>{
 	if (imcm < 18.5) {
 		txt2 = `usted está en un <b>peso bajo</b>`;
 	} else if (imcm >= 18.5 && imcm <= 24.9){
-		txt2 = `usted está entre el rango de un <b>peso ideal</b>`;
+		txt2 = `usted está entre el rango de un <b>peso normal</b>`;
 	} else if (imcm > 24.9 && imcm <= 29.9){
 		txt2 = `usted tiene <b>sobrepeso</b>`;
 	} else if (imcm > 29.9 && imcm <= 34.9){
@@ -58,15 +58,19 @@ boton.addEventListener("click",(e)=>{
 
 	resultado.classList.remove('dis');
 	resultado.classList.add('res');
+	
+/*  <p>Bienvenido <b>${nombre.value},</b> ${txt2}, ${txt}</p><br> */
+/* 	<p><b>Peso mínimo de:</b><span> ${(parseFloat(pesoIdeal).toFixed(2) - 9).toFixed(2)} Kilos</span> </p> <br> */
+/* <p><b>Su peso ideal es de:</b><span> ${pesoIdeal.toFixed(2)} Kilos</span> </p> <br></br> */
+/*  <p><b>Peso máximo de:</b><span> ${(parseFloat(pesoIdeal) + 9).toFixed(2)} Kilos</span> </p> <br> */
 
 	if (sexo.value == "m") {
 		resultado.innerHTML = `
 		<div class="container">
 			<br>
 			<p>Bienvenido <b>${nombre.value},</b> ${txt2}, ${txt}</p><br>
-			<p><b>Peso mínimo de:</b><span> ${(parseFloat(pesoIdeal).toFixed(2) - 10).toFixed(2)} Kilos</span> </p> <br>
-			<p><b>Su peso ideal es de:</b><span> ${pesoIdeal.toFixed(2)} Kilos</span> </p> <br>
-			<p><b>Peso máximo de:</b><span> ${(parseFloat(pesoIdeal) + 10).toFixed(2)} Kilos</span> </p> <br>
+			<p><b>Su peso ideal es:</b> <span>${pesoIdeal.toFixed(2)}kg.</span> Sin embargo, su peso también puede considerarse saludable si se mantiene entre
+			los <span>${(parseFloat(pesoIdeal) - 9).toFixed(2)}</span> y <span>${(parseFloat(pesoIdeal) + 9).toFixed(2)}</span> kg.</p><br>
 			<p><b>Metabolismo basal:</b><span> ${mbm.toFixed(2)}</span></p>
 			<p>Es la cantidad de energía necesaria para mantener los procesos vitales estando en reposo.</p><br>
 			<p><b>Requerimiento Calórico:</b><span> ${mbf1.toFixed(2)}</span></p>
@@ -76,7 +80,7 @@ boton.addEventListener("click",(e)=>{
 			<p><b>Grasa Corporal:</b><span> ${grasaCorporalM.toFixed(2)}%</span> </p>
 			<p><b>La masa de grasa corporal es de:</b><span> ${mgcm.toFixed(2)} kg</span> </p>
 			<p><b>La masa corporal magra es:</b><span> ${mcmm.toFixed(2)} kg</span> </p><br>
-			<p><b>Usted debería tomar:</b><span> ${agua.toFixed(2)} ml de agua</span> al día.</p> <br>
+			<p><b>Usted debería tomar:</b><span> ${agua.toFixed(2)}ml </span> de agua al día.</p> <br>
 		</div>
 		 `;
 
@@ -85,9 +89,8 @@ boton.addEventListener("click",(e)=>{
 		<div class="container">
 			<br>
 			<p>Bienvenida <b>${nombre.value},</b> ${txt2}, ${txt}</p><br>
-			<p><b>Peso mínimo de:</b><span> ${(parseFloat(pesoIdeal).toFixed(2) - 10).toFixed(2)} Kilos</span> </p> <br>
-			<p><b>Su peso ideal es de:</b><span> ${pesoIdeal.toFixed(2)} Kilos</span> </p> <br>
-			<p><b>Peso máximo de:</b><span> ${(parseFloat(pesoIdeal) + 10).toFixed(2)} Kilos</span> </p> <br>
+			<p><b>Su peso ideal es:</b> <span>${pesoIdeal.toFixed(2)}kg.</span> Sin embargo, su peso también puede considerarse saludable si se mantiene entre
+			los <span>${(parseFloat(pesoIdeal) - 9).toFixed(2)}</span> y <span>${(parseFloat(pesoIdeal) + 9).toFixed(2)}</span> kg.</p><br>
 			<p><b>Metabolismo basal:</b><span> ${mbf.toFixed(2)}</span></p>
 			<p>Es la cantidad de energía necesaria para mantener los procesos vitales estando en reposo.</p><br>
 			<p><b>Requerimiento Calórico:</b><span> ${mbf2.toFixed(2)}</span></p>
@@ -97,7 +100,7 @@ boton.addEventListener("click",(e)=>{
 			<p><b>Grasa Corporal:</b><span> ${grasaCorporalF.toFixed(2)}%</span> </p>
 			<p><b>La masa de grasa corporal es de:</b><span> ${mgcf.toFixed(2)} kg</span> </p>
 			<p><b>La masa corporal magra es de:</b><span> ${mcmf.toFixed(2)} kg</span></p> <br>
-			<p><b>Usted debería tomar:</b><span> ${agua.toFixed(2)} ml de agua</span> al día.</p> <br>
+			<p><b>Usted debería tomar:</b><span> ${agua.toFixed(2)} ml </span> de agua al día.</p> <br>
 		</div>
 
 		 `;
