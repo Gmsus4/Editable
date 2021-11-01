@@ -26,7 +26,7 @@ boton.addEventListener("click",(e)=>{
 	imcf = Math.round((peso.value) / (Math.pow(altura.value / 100, 2)) * 100) / (100);
 	imcm = Math.round((peso.value) / (Math.pow(altura.value / 100, 2)) * 100) / (100);
 	agua = 35 * peso.value;
-	pesoIdeal = Math.floor(Math.round((altura.value / 100)*(altura.value / 100) * (21.745)));
+	pesoIdeal = Math.round((altura.value / 100)*(altura.value / 100) * (21.745));
 	resta = (peso.value - pesoIdeal) * -1;
 	grasaCorporalM = Math.round(((1.2 * imcm) + (0.23 * edad.value) -10.8 -5.4) * (100)) / (100);
 	grasaCorporalF = Math.round(((1.2 * imcf) + (0.23 * edad.value) -5.4) * (100)) / (100);
@@ -63,7 +63,7 @@ boton.addEventListener("click",(e)=>{
 		<div class="container">
 			<br>
 			<p>Bienvenido <b>${nombre.value},</b> ${txt2}, ${txt}</p><br>
-			<p><b>Su peso ideal es de:</b><span> ${pesoIdeal} Kilos</span> </p> <br>
+			<p><b>Su peso ideal es de:</b><span> ${pesoIdeal.toFixed(2)} Kilos</span> </p> <br>
 			<p><b>Metabolismo basal:</b><span> ${mbm}</span></p>
 			<p>Es la cantidad de energía necesaria para mantener los procesos vitales estando en reposo.</p><br>
 			<p><b>Requerimiento Calórico:</b><span> ${mbf1}</span></p>
@@ -82,7 +82,7 @@ boton.addEventListener("click",(e)=>{
 		<div class="container">
 			<br>
 			<p>Bienvenida <b>${nombre.value},</b> ${txt2}, ${txt}</p><br>
-			<p><b>Su peso ideal es de:</b><span> ${pesoIdeal} Kilos</span> </p> <br>
+			<p><b>Su peso ideal es de:</b><span> ${pesoIdeal.toFixed(2)} Kilos</span> </p> <br>
 			<p><b>Metabolismo basal:</b><span> ${mbf}</span></p>
 			<p>Es la cantidad de energía necesaria para mantener los procesos vitales estando en reposo.</p><br>
 			<p><b>Requerimiento Calórico:</b><span> ${mbf2}</span></p>
