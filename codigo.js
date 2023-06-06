@@ -18,70 +18,46 @@ palettes.addEventListener("click",(p)=>{
 
 boton.addEventListener("click",(e)=>{
 	e.preventDefault();
+	let mb; //Metabolísmo basal
+	let gc; //Grasa corporal
+	let rc; //Requerimiento calórico
+	let txt; let txt2;
+	let title; //Título sobbre Subir o bajar de peso 
+	const imc = peso.value / (Math.pow(altura.value / 100, 2)); //índice de masa corporal
+	let rcObjetivo; // Requerimiento calórico Objetivo
 
-	const mbf = 10 * peso.value + 6.25 * altura.value - 5 * edad.value - 161; //Metabolímo basal feminino
-	const mbm = 10 * peso.value + 6.25 * altura.value - 5 * edad.value  + 5; //Metabolímo basal masculino
-	const rcm = mbm * actividad.value; //Requerimiento calórico femenino
-	const rcf = mbf * actividad.value; //Requerimiento calórico masculino
-	const imcf = peso.value / (Math.pow(altura.value / 100, 2)); //índice de masa corporal femenino
-	const imcm = peso.value / (Math.pow(altura.value / 100, 2)); //índice de masa corporal masculino
+	if (sexo.value == "m") {
+		mb = 10 * peso.value + 6.25 * altura.value - 5 * edad.value  + 5;
+		gc = (1.2 * imc) + (0.23 * edad.value) - 10.8 - 5.4;
+	  } else {
+		mb = 10 * peso.value + 6.25 * altura.value - 5 * edad.value - 161;
+		gc = (1.2 * imc) + (0.23 * edad.value) - 5.4;
+	  }
+
+	rc = mb * actividad.value; // Requerimiento calórico
+
+	switch (objetivo.value) {
+		case '1':
+		  rcObjetivo = rc - rc * 0.17;
+		  title = 'Calorías para perder grasa';
+		  break;
+		case '2':
+		  rcObjetivo = rc + rc * 0.17;
+		  title = 'Calorías para ganar músculo';
+		  break;
+	}
+	
+	const mgc = (peso.value * gc) / (100); //Masa de grasa corporal
+	const mcm = (peso.value - mgc); //Masa corporal magra
 	const agua = 35 * peso.value; //Agua que debe consumir al día
 	const pesoIdeal = (altura.value / 100) * (altura.value / 100) * (21.745); //Peso ideal
 	const resta = (peso.value - pesoIdeal) * -1;
-	const grasaCorporalM = (1.2 * imcm) + (0.23 * edad.value) -10.8 -5.4; //Grasa corporal masculino
-	const grasaCorporalF = (1.2 * imcf) + (0.23 * edad.value) -5.4; //Grasa corporal femenino
-	const mgcm = (peso.value * grasaCorporalM) / (100); //Masa de grasa corporal masculino
-	const mgcf = (peso.value * grasaCorporalF) / (100); //Masa de grasa corporal femenino
-	const mcmm = (peso.value - mgcm); //Masa corporal magra masculino
-	const mcmf = (peso.value - mgcf); //Masa corporal magra femenino
-	const bpm = (rcm - rcm * 0.17) //Bajar de peso masculino
-	const bpf = (rcf - rcf * 0.17) //Bajar de peso femenino
-	const spm = (rcm + rcm * 0.17) //Subir de peso masculino
-	const spf = (rcf + rcf * 0.17) //Subir de peso femenino
 	const proteinas = Math.floor(peso.value * 1.75); //Proteínas en gramos
-	const grasas = Math.floor(peso.value * 0.8); //Grasas en gramos
 	const kcalProteinas = proteinas * 4; //kcal en proteínas
+	const grasas = Math.floor(peso.value * 0.8); //Grasas en gramos
 	const kcalGrasas = grasas * 9; //kcal en grasas
-
-	let rcObjetivo; // Requerimiento calórico Objetivo
-	if (sexo.value == "m") {
-	  switch (objetivo.value) {
-		case '1':
-		  rcObjetivo = bpm;
-		  break;
-		case '2':
-		  rcObjetivo = spm;
-		  break;
-	  }
-	} else {
-	  switch (objetivo.value) {
-		case '1':
-		  rcObjetivo = bpf;
-		  break;
-		case '2':
-		  rcObjetivo = spf;
-		  break;
-	  }
-	}
-	
-	console.log(rcObjetivo);	
-	
-	const kcalCarbohidratos = rcObjetivo - kcalProteinas - kcalGrasas;
-	const carbohidratos = kcalCarbohidratos / 4;
-
-	let txt;
-	let txt2;
-	let result;
-	let title;
-
-	console.log(`Peso Ideal: ${pesoIdeal}`);
-	console.log(`Requerimiento calórico objetivo: ${rcObjetivo}`);
-	console.log(`Proteínas en kcal: ${kcalProteinas}`);
-	console.log(`Proteínas en gramos: ${proteinas}`);
-	console.log(`Grasas en kcal: ${kcalGrasas}`);
-	console.log(`Grasas en gramos: ${grasas}`);
-	console.log(`Carbohidratos en kcal: ${kcalCarbohidratos}`);
-	console.log(`Carbohidratos en gramos: ${carbohidratos}`);
+	const kcalCarbohidratos = rcObjetivo - kcalProteinas - kcalGrasas; //kcal en carbohidratos
+	const carbohidratos = kcalCarbohidratos / 4; //Carbohidratos en gramos
 
 	if (resta > 1) {
 		txt = `debe subir de peso <span>${resta.toFixed(2)}</span> kilos para estar en su peso ideal.`;
@@ -91,13 +67,13 @@ boton.addEventListener("click",(e)=>{
 		txt = `debe bajar de peso <span>${resta.toFixed(2)}</span> kilos para estar en su peso ideal.`;
 	}
 
-	if (imcm < 18.5) {
+	if (imc < 18.5) {
 		txt2 = `usted está en un <b>peso bajo</b>`;
-	} else if (imcm >= 18.5 && imcm <= 24.9){
+	} else if (imc >= 18.5 && imc <= 24.9){
 		txt2 = `usted está entre el rango de un <b>peso normal</b>`;
-	} else if (imcm > 24.9 && imcm <= 29.9){
+	} else if (imc > 24.9 && imc <= 29.9){
 		txt2 = `usted tiene <b>sobrepeso</b>`;
-	} else if (imcm > 29.9 && imcm <= 34.9){
+	} else if (imc > 29.9 && imc <= 34.9){
 		txt2 = `usted tiene <b>obesidad</b>`;
 	} else{
 		txt2 = `usted tiene <b>obesidad morbida</b>`;
@@ -105,66 +81,26 @@ boton.addEventListener("click",(e)=>{
 
 	resultado.classList.remove('dis');
 	resultado.classList.add('res');
-
-	if (sexo.value == "m") {
-		if(objetivo.value == 1){
-			result = bpm;
-			title = 'Calorías para perder grasa';
-		} else{
-			result = spm;
-			title = 'Calorías para ganar músculo';
-		}
-		resultado.innerHTML = `
-		<div class="container">
-			<br>
-			<p>Bienvenido <b>${nombre.value},</b> ${txt2}, ${txt}</p><br>
-			<p><b>Su peso ideal es:</b> <span>${pesoIdeal.toFixed(2)}kg.</span> Sin embargo, su peso también puede considerarse saludable si se mantiene entre
-			los <span>${(parseFloat(pesoIdeal) - 9).toFixed(2)}</span> y <span>${(parseFloat(pesoIdeal) + 9).toFixed(2)}</span> kg.</p><br>
-			<p><b>Metabolismo basal:</b><span> ${mbm.toFixed(2)}</span></p>
-			<p>Es la cantidad de energía necesaria para mantener los procesos vitales estando en reposo.</p><br>
-			<p><b>Requerimiento Calórico:</b><span> ${rcm.toFixed(2)}</span></p>
-			<p>Es la ingesta diaria de calorías recomendada de una persona para mantener su peso actual.</p><br>
-			<p><b>${title}:</b><span> ${result.toFixed(2)}</span></p><br>
-			<p><b>IMC:</b><span> ${imcm.toFixed(2)}</span> </p>
-			<p>El índice de masa corporal (IMC) sirve para medir la relación entre el peso y la talla, lo que  permite identificar el sobrepeso y la obesidad en adultos.</p><br>
-			<p><b>Grasa Corporal:</b><span> ${grasaCorporalM.toFixed(2)}%</span> </p>
-			<p><b>La masa de grasa corporal es de:</b><span> ${mgcm.toFixed(2)} kg</span> </p>
-			<p><b>La masa corporal magra es:</b><span> ${mcmm.toFixed(2)} kg</span> </p><br>
-			<p><b>Usted debería tomar:</b><span> ${agua.toFixed(2)}ml </span> de agua al día.</p> <br>
-		</div>
-		 `;
-
-	} else{
-		if(objetivo.value == 1){
-			result = bpf;
-			title = 'Calorías para perder grasa';
-		} else{
-			result = spf;
-			title = 'Calorías para ganar músculo';
-		}
-		resultado.innerHTML = `
-		<div class="container">
-			<br>
-			<p>Bienvenida <b>${nombre.value},</b> ${txt2}, ${txt}</p><br>
-			<p><b>Su peso ideal es:</b> <span>${pesoIdeal.toFixed(2)}kg.</span> Sin embargo, su peso también puede considerarse saludable si se mantiene entre
-			los <span>${(parseFloat(pesoIdeal) - 9).toFixed(2)}</span> y <span>${(parseFloat(pesoIdeal) + 9).toFixed(2)}</span> kg.</p><br>
-			<p><b>Metabolismo basal:</b><span> ${mbf.toFixed(2)}</span></p>
-			<p>Es la cantidad de energía necesaria para mantener los procesos vitales estando en reposo.</p><br>
-			<p><b>Requerimiento Calórico:</b><span> ${rcf.toFixed(2)}</span></p>
-			<p>Es la ingesta diaria de calorías recomendada de una persona para mantener su peso actual.</p><br> 
-			<p><b>${title}:</b><span>${result.toFixed(2)}</span></p><br>
-			<p><b>IMC:</b><span> ${imcf.toFixed(2)}</span> </p>
-			<p>El índice de masa corporal (IMC) sirve para medir la relación entre el peso y la talla, lo que  permite identificar el sobrepeso y la obesidad en adultos.</p><br>
-			<p><b>Grasa Corporal:</b><span> ${grasaCorporalF.toFixed(2)}%</span> </p>
-			<p><b>La masa de grasa corporal es de:</b><span> ${mgcf.toFixed(2)} kg</span> </p>
-			<p><b>La masa corporal magra es de:</b><span> ${mcmf.toFixed(2)} kg</span></p> <br>
-			<p><b>Usted debería tomar:</b><span> ${agua.toFixed(2)} ml </span> de agua al día.</p> <br>
-		</div>
-		 `;
-	}
-
-	console.log(objetivo.value)
-
+	resultado.innerHTML = `
+	<div class="container">
+		<br>
+		<p>Bienvenid@ <b>${nombre.value},</b> ${txt2}, ${txt}</p><br>
+		<p><b>Su peso ideal es:</b> <span>${pesoIdeal.toFixed(2)}kg.</span> Sin embargo, su peso también puede considerarse saludable si se mantiene entre
+		los <span>${(parseFloat(pesoIdeal) - 9).toFixed(2)}</span> y <span>${(parseFloat(pesoIdeal) + 9).toFixed(2)}</span> kg.</p><br>
+		<p title="Es la cantidad de energía necesaria para mantener los procesos vitales estando en reposo.">
+		<b>Metabolismo basal:</b><span> ${mb.toFixed(2)}</span></p><br>
+		<p title="Es la ingesta diaria de calorías recomendada de una persona para mantener su peso actual.">
+		<b>Requerimiento Calórico:</b><span> ${rc}</span></p><br>
+		<p><b>${title}:</b><span> ${rcObjetivo.toFixed(2)}</span></p><br>
+		<p title="El índice de masa corporal (IMC) sirve para medir la relación entre el peso y la talla, lo que  permite identificar el sobrepeso y la obesidad en adultos.">
+		<b>IMC:</b><span> ${imc.toFixed(2)}</span></p><br>
+		<p><b>Grasa Corporal:</b><span> ${gc.toFixed(2)}%</span></p><br>
+		<p><b>La masa de grasa corporal es de:</b><span> ${mgc.toFixed(2)} kg</span> </p>
+		<p><b>La masa corporal magra es:</b><span> ${mcm.toFixed(2)} kg</span> </p><br>
+		<p><b>Proteínas: </b><span>Consumir ${Math.floor(proteinas)}g = ${kcalProteinas.toFixed(2)}kcal</span></p>
+		<p><b>Grasas: </b><span>Consumir ${Math.floor(grasas)}g = ${kcalGrasas.toFixed(2)}kcal</span></p>
+		<p><b>Carbohidratos: </b><span>Consumir ${Math.floor(carbohidratos)}g = ${kcalCarbohidratos.toFixed(2)}kcal</span></p><br>
+		<p><b>Usted debería tomar:</b><span> ${agua.toFixed(2)}ml </span> de agua al día.</p> <br>
+	</div>`;
 	window.location.href = "#res_";
 })
-
